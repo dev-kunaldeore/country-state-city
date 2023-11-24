@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <style>
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        margin: 20px;
+        background-color: #f6f6f6;
+        color: #333;
+      }
+      h1 {
+        color: #4285f4;
+        border-bottom: 2px solid #4285f4;
+        padding-bottom: 10px;
+      }
+      h2 {
+        color: #5f6368;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 5px;
+      }
+      code {
+        background-color: #f0f0f0;
+        padding: 2px 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+      p {
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>API Documentation</h1>
+
+    <h2>1. <code>/get-all-countries</code></h2>
+
+    <h3>Endpoint</h3>
+    <pre><code>GET /get-all-countries</code></pre>
+
+    <h3>Request</h3>
+    <p>No request parameters required.</p>
+
+    <h3>Response</h3>
+    <ul>
+      <li><strong>Status Code:</strong> 200 OK</li>
+      <li><strong>Content Type:</strong> application/json</li>
+    </ul>
+
+    <h4>Example Response Body</h4>
+    <pre><code>[
+  {
+    "id": 1,
+    "name": "Afghanistan",
+    "iso2": "AF"
+  },
+  {
+    "id": 2,
+    "name": "Aland Islands",
+    "iso2": "AX"
+  },
+  {
+    "id": 3,
+    "name": "Albania",
+    "iso2": "AL"
+  },
+  {
+    "id": 4,
+    "name": "Algeria",
+    "iso2": "DZ"
+  },
+  // ...
+]</code></pre>
+
+    <h2>2. <code>/get-states-by-country</code></h2>
+
+    <h3>Endpoint</h3>
+    <pre><code>GET /get-all-countries?country_code={COUNTRY_CODE}</code></pre>
+
+    <h3>Request</h3>
+    <p>country_code</p>
+
+    <h3>Response</h3>
+    <ul>
+      <li><strong>Status Code:</strong> 200 OK</li>
+      <li><strong>Content Type:</strong> application/json</li>
+    </ul>
+
+    <h4>Example Response Body</h4>
+    <pre><code>[
+  {
+    "id": 4006,
+    "name": "Meghalaya",
+    "country_id": 101,
+    "country_code": "IN",
+    "iso2": "ML",
+    "type": "state",
+    "latitude": "25.46703080",
+    "longitude": "91.36621600"
+  },
+  {
+    "id": 4007,
+    "name": "Haryana",
+    "country_id": 101,
+    "country_code": "IN",
+    "iso2": "HR",
+    "type": "state",
+    "latitude": "29.05877570",
+    "longitude": "76.08560100"
+  },
+  //..
+]</code></pre>
+
+    <h2>3. <code>/get-cities-by-country</code></h2>
+
+    <h3>Endpoint</h3>
+    <pre><code>GET /get-cities-by-country?country_code={COUNTRY_CODE}</code></pre>
+
+    <h3>Request</h3>
+    <p>country_code</p>
+
+    <h3>Response</h3>
+    <ul>
+      <li><strong>Status Code:</strong> 200 OK</li>
+      <li><strong>Content Type:</strong> application/json</li>
+    </ul>
+
+    <h4>Example Response Body</h4>
+    <pre><code>[
+  {
+    "id": 57584,
+    "name": "Abhaneri",
+    "iso2": "IN"
+  },
+  {
+    "id": 57585,
+    "name": "Abhayapuri",
+    "iso2": "IN"
+  },
+  //..
+]</code></pre>
+
+    <h2>Error Handling</h2>
+
+    <p>
+      If an error occurs during the processing of a request, the API will
+      respond with an error message and an appropriate status code.
+    </p>
+
+    <ul>
+      <li><strong>Status Code:</strong> 400 Bad Request</li>
+      <li><strong>Content Type:</strong> text/plain</li>
+    </ul>
+
+    <h3>Example Error Response</h3>
+    <pre><code>Missing country_code parameter</code></pre>
+
+    <ul>
+      <li><strong>Status Code:</strong> 500 Internal Server Error</li>
+      <li><strong>Content Type:</strong> application/json</li>
+    </ul>
+
+    <h3>Example Error Response Body</h3>
+    <pre><code>{
+  "error": "Error message details..."
+}</code></pre>
+
+    <h2>Notes</h2>
+
+    <ul>
+      <li>All responses are in JSON format.</li>
+      <li>
+        Ensure that the required data files (<code>country.json</code>,
+        <code>states.json</code>, <code>cities.json</code>) are available at the
+        specified file paths (<code>../data/</code>).
+      </li>
+    </ul>
+  </body>
+</html>
